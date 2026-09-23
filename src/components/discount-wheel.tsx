@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type CSSProperties, type FormEvent } from "react";
 import { Gift, LogIn, LogOut, Sparkles, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -159,7 +159,7 @@ export function DiscountWheel() {
                   {wheelLabels.map(({ label, angle }, index) => (
                     <span
                       className={label === "PAR GRATIS" ? "wheel-label wheel-jackpot" : "wheel-label"}
-                      style={{ transform: `rotate(${angle}deg) translateY(-43%)` }}
+                      style={{ "--wheel-angle": `${angle}deg` } as CSSProperties}
                       key={`${label}-${index}`}
                     >
                       {label}
