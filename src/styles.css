@@ -95,6 +95,12 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  --wheel-a: oklch(0.73 0.19 145);
+  --wheel-b: oklch(0.78 0.17 85);
+  --wheel-c: oklch(0.68 0.2 28);
+  --wheel-d: oklch(0.67 0.19 250);
+  --wheel-jackpot: oklch(0.82 0.17 88);
+  --wheel-overlay: oklch(0.1 0.01 260 / 74%);
 }
 
 .dark {
@@ -130,6 +136,12 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+  --wheel-a: oklch(0.68 0.2 145);
+  --wheel-b: oklch(0.76 0.17 82);
+  --wheel-c: oklch(0.7 0.2 28);
+  --wheel-d: oklch(0.7 0.18 250);
+  --wheel-jackpot: oklch(0.85 0.18 90);
+  --wheel-overlay: oklch(0.05 0.01 260 / 82%);
 }
 
 @layer base {
@@ -141,4 +153,77 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+}
+
+@keyframes wheel-shimmer {
+  0%, 100% { filter: drop-shadow(0 0 5px color-mix(in oklch, var(--wheel-jackpot) 50%, transparent)); }
+  50% { filter: drop-shadow(0 0 15px var(--wheel-jackpot)); }
+}
+
+@keyframes wheel-pulse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+.wheel-topbar {
+  display: flex;
+  min-height: 40px;
+  width: 100%;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--foreground);
+  color: var(--background);
+  cursor: pointer;
+  font: 700 .78rem/1.2 "Plus Jakarta Sans", sans-serif;
+  letter-spacing: 0;
+}
+.wheel-topbar svg { width: 15px; height: 15px; color: var(--wheel-jackpot); animation: wheel-shimmer 2s ease-in-out infinite; }
+.wheel-topbar strong { color: var(--wheel-jackpot); font-size: .68rem; text-transform: uppercase; }
+.wheel-overlay { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 1rem; background: var(--wheel-overlay); backdrop-filter: blur(7px); }
+.wheel-panel { position: relative; width: min(900px, 100%); max-height: calc(100vh - 2rem); overflow-y: auto; border: 1px solid var(--border); border-radius: 8px; background: var(--background); color: var(--foreground); box-shadow: 0 24px 80px var(--wheel-overlay); padding: clamp(1.1rem, 3vw, 2rem); }
+.wheel-close { position: absolute; top: .65rem; right: .65rem; z-index: 2; }
+.wheel-copy { text-align: center; margin-bottom: 1rem; padding-inline: 2rem; }
+.wheel-copy h2 { margin: .35rem 0; font: 800 clamp(1.55rem, 4vw, 2.5rem)/1.05 "Plus Jakarta Sans", sans-serif; letter-spacing: 0; }
+.wheel-copy p, .wheel-odds { margin: 0; color: var(--muted-foreground); font-size: .8rem; }
+.wheel-kicker { display: inline-flex; align-items: center; gap: .35rem; color: var(--primary); font-size: .68rem; font-weight: 800; }
+.wheel-kicker svg { width: 14px; height: 14px; }
+.wheel-layout { display: grid; grid-template-columns: minmax(280px, 1.05fr) minmax(260px, .95fr); align-items: center; gap: clamp(1rem, 4vw, 2.5rem); }
+.wheel-stage { position: relative; width: min(100%, 420px); aspect-ratio: 1; margin-inline: auto; padding: 10px; }
+.wheel-pointer { position: absolute; z-index: 3; top: -2px; left: 50%; width: 0; height: 0; transform: translateX(-50%); border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 28px solid var(--foreground); filter: drop-shadow(0 3px 2px color-mix(in oklch, var(--foreground) 20%, transparent)); }
+.wheel-disc { position: relative; width: 100%; height: 100%; border: 8px solid var(--foreground); border-radius: 50%; background: repeating-conic-gradient(var(--wheel-a) 0deg 20deg, var(--wheel-b) 20deg 40deg, var(--wheel-c) 40deg 60deg, var(--wheel-d) 60deg 80deg); box-shadow: inset 0 0 0 4px var(--background), 0 10px 35px color-mix(in oklch, var(--foreground) 22%, transparent); transition: transform 4.2s cubic-bezier(.12,.72,.08,1); }
+.wheel-label { position: absolute; left: 50%; top: 50%; width: 54px; margin-left: -27px; transform: rotate(var(--wheel-angle)) translateY(calc(clamp(112px, 32vw, 160px) * -1)) rotate(calc(var(--wheel-angle) * -1)); text-align: center; color: var(--primary-foreground); font-size: clamp(.58rem, 1.8vw, .74rem); font-weight: 900; line-height: 1; text-shadow: 0 1px 2px var(--foreground); }
+.wheel-jackpot { color: var(--wheel-jackpot); font-size: .46rem; line-height: .9; animation: wheel-shimmer 1.15s ease-in-out infinite; }
+.wheel-hub { position: absolute; inset: 39%; display: grid; place-items: center; border: 5px solid var(--background); border-radius: 50%; background: var(--foreground); color: var(--background); font-weight: 900; font-size: clamp(.75rem, 2vw, 1.1rem); }
+.wheel-actions { display: flex; flex-direction: column; gap: .7rem; }
+.wheel-auth-heading, .wheel-account { display: flex; align-items: center; justify-content: space-between; gap: .5rem; font-size: .82rem; }
+.wheel-auth-heading { justify-content: flex-start; font-weight: 750; }
+.wheel-auth-heading svg { width: 16px; height: 16px; }
+.wheel-account span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wheel-auth-form { display: grid; gap: .6rem; }
+.wheel-mode { border: 0; background: transparent; color: var(--muted-foreground); cursor: pointer; font-size: .75rem; text-decoration: underline; }
+.wheel-spin-button { min-height: 48px; font-size: .95rem; font-weight: 850; animation: wheel-pulse 2.2s ease-in-out infinite; }
+.wheel-result { display: grid; justify-items: center; gap: .5rem; border: 1px solid color-mix(in oklch, var(--wheel-a) 55%, var(--border)); border-radius: 6px; background: color-mix(in oklch, var(--wheel-a) 12%, var(--background)); padding: 1.2rem; text-align: center; }
+.wheel-result svg { color: var(--wheel-a); }
+.wheel-result strong { font-size: 1.1rem; }
+.wheel-result span { color: var(--muted-foreground); font-size: .75rem; }
+.wheel-result-jackpot { border-color: var(--wheel-jackpot); animation: wheel-shimmer 1.4s ease-in-out infinite; }
+.wheel-message { margin: 0; color: var(--destructive); font-size: .75rem; text-align: center; }
+.wheel-odds { margin-top: .2rem; text-align: center; font-size: .65rem; }
+
+@media (max-width: 700px) {
+  .wheel-topbar { min-height: 36px; }
+  .wheel-layout { grid-template-columns: 1fr; }
+  .wheel-stage { width: min(78vw, 330px); }
+  .wheel-panel { padding: 1rem; }
+  .wheel-copy { margin-bottom: .4rem; }
+  .wheel-copy p { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wheel-topbar svg, .wheel-jackpot, .wheel-spin-button, .wheel-result-jackpot { animation: none; }
+  .wheel-disc { transition-duration: .01ms; }
 }

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { DiscountWheel } from "@/components/discount-wheel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,9 +25,10 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="h-screen w-full overflow-hidden bg-background">
+    <main className="flex h-screen w-full flex-col overflow-hidden bg-background">
+      <DiscountWheel />
       <iframe
-        className="h-full w-full border-0"
+        className="min-h-0 w-full flex-1 border-0"
         src="/tienda-m1la.html"
         title="Tienda online m1la"
         allow="clipboard-write"
