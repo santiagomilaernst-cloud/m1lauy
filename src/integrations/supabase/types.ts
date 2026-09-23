@@ -14,13 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      discount_wheel_spins: {
+        Row: {
+          discount_percent: number | null
+          is_free_pair: boolean
+          prize_code: string
+          user_id: string
+          won_at: string
+        }
+        Insert: {
+          discount_percent?: number | null
+          is_free_pair?: boolean
+          prize_code: string
+          user_id: string
+          won_at?: string
+        }
+        Update: {
+          discount_percent?: number | null
+          is_free_pair?: boolean
+          prize_code?: string
+          user_id?: string
+          won_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      spin_discount_wheel: {
+        Args: never
+        Returns: {
+          discount_percent: number
+          is_free_pair: boolean
+          is_new: boolean
+          prize_code: string
+          won_at: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
