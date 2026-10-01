@@ -8,6 +8,13 @@
       "when": 1790182540370,
       "tag": "0000_create_discount_wheel_spins",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790827875000,
+      "tag": "0001_single_use_wheel_checkout",
+      "breakpoints": true
     }
   ]
 }

@@ -11,6 +11,7 @@ type WheelResult = {
   discount_percent: number | null;
   is_free_pair: boolean;
   won_at: string;
+  redeemed_at?: string | null;
   is_new?: boolean;
 };
 
@@ -65,7 +66,7 @@ export function DiscountWheel() {
   async function loadExistingResult() {
     const { data } = await supabase
       .from("discount_wheel_spins")
-      .select("prize_code, discount_percent, is_free_pair, won_at")
+      .select("prize_code, discount_percent, is_free_pair, won_at, redeemed_at")
       .maybeSingle();
     if (data) setResult(data);
   }
@@ -197,7 +198,7 @@ export function DiscountWheel() {
                       <div className={result.is_free_pair ? "wheel-result wheel-result-jackpot" : "wheel-result"}>
                         <Sparkles />
                         <strong>{resultLabel(result)}</strong>
-                        <span>Este es tu premio único y ya quedó guardado.</span>
+                        <span>{result.redeemed_at ? "Este premio ya se usó en una compra." : "Disponible para usar una sola vez en el carrito."}</span>
                       </div>
                     ) : (
                       <Button className="wheel-spin-button" onClick={handleSpin} disabled={spinning}>

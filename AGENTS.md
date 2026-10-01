@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- La tienda HTML incrustada se comunica con la ruta principal por mensajes restringidos al mismo origen; la ruta usa la sesión real y la función atómica de la base de datos para consumir premios, porque el HTML de la tienda no debe decidir elegibilidad ni uso único.
