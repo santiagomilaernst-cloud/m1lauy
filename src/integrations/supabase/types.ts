@@ -19,6 +19,8 @@ export type Database = {
           discount_percent: number | null
           is_free_pair: boolean
           prize_code: string
+          redeemed_at: string | null
+          redeemed_order_id: string | null
           user_id: string
           won_at: string
         }
@@ -26,6 +28,8 @@ export type Database = {
           discount_percent?: number | null
           is_free_pair?: boolean
           prize_code: string
+          redeemed_at?: string | null
+          redeemed_order_id?: string | null
           user_id: string
           won_at?: string
         }
@@ -33,6 +37,8 @@ export type Database = {
           discount_percent?: number | null
           is_free_pair?: boolean
           prize_code?: string
+          redeemed_at?: string | null
+          redeemed_order_id?: string | null
           user_id?: string
           won_at?: string
         }
@@ -43,6 +49,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      redeem_discount_wheel: {
+        Args: { p_order_id: string }
+        Returns: {
+          discount_percent: number
+          is_free_pair: boolean
+          prize_code: string
+          redeemed_at: string
+        }[]
+      }
       spin_discount_wheel: {
         Args: never
         Returns: {
