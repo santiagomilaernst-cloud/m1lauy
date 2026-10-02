@@ -34,7 +34,15 @@ export function DiscountWheel() {
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
   const [spinning, setSpinning] = useState(false);
+  const [funSpinning, setFunSpinning] = useState(false);
+  const [funResult, setFunResult] = useState<string | null>(null);
   const [rotation, setRotation] = useState(0);
+
+  useEffect(() => {
+    const openWheel = () => setOpen(true);
+    window.addEventListener("m1la-wheel-open", openWheel);
+    return () => window.removeEventListener("m1la-wheel-open", openWheel);
+  }, []);
 
   const segmentStep = 360 / segments.length;
   const wheelLabels = useMemo(
