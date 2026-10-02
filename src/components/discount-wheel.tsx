@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type CSSProperties, type FormEvent } from "react";
-import { Gift, LogIn, LogOut, Sparkles, X } from "lucide-react";
+import { Gift, LogIn, LogOut, PartyPopper, Sparkles, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,7 +34,15 @@ export function DiscountWheel() {
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
   const [spinning, setSpinning] = useState(false);
+  const [funSpinning, setFunSpinning] = useState(false);
+  const [funResult, setFunResult] = useState<string | null>(null);
   const [rotation, setRotation] = useState(0);
+
+  useEffect(() => {
+    const openWheel = () => setOpen(true);
+    window.addEventListener("m1la-wheel-open", openWheel);
+    return () => window.removeEventListener("m1la-wheel-open", openWheel);
+  }, []);
 
   const segmentStep = 360 / segments.length;
   const wheelLabels = useMemo(
@@ -123,6 +131,24 @@ export function DiscountWheel() {
     }, 4300);
   }
 
+  function handleFunSpin() {
+    if (funSpinning || spinning) return;
+    setFunSpinning(true);
+    setFunResult(null);
+    const pick = segments[Math.floor(Math.random() * segments.length)];
+    const pickIndex = segments.indexOf(pick);
+    const landingAngle = pickIndex >= 0 ? pickIndex * segmentStep + segmentStep / 2 : 0;
+    setRotation((current) => current + 1800 + (360 - landingAngle));
+    window.setTimeout(() => {
+      setFunSpinning(false);
+      setFunResult(
+        pick === "PAR GRATIS"
+          ? "¡Casi un par gratis!… pero esta tirada era solo por diversión."
+          : `${pick} — ¡Buen ojo! Esta tirada no cuenta como premio.`,
+      );
+    }, 4300);
+  }
+
   async function handleSignOut() {
     await supabase.auth.signOut();
     setUserEmail(null);
@@ -131,12 +157,6 @@ export function DiscountWheel() {
 
   return (
     <>
-      <button className="wheel-topbar" type="button" onClick={() => setOpen(true)}>
-        <Sparkles aria-hidden="true" />
-        <span>Ruleta de descuentos</span>
-        <strong>Gir&aacute; y gan&aacute;</strong>
-      </button>
-
       {open ? (
         <div className="wheel-overlay" role="dialog" aria-modal="true" aria-labelledby="wheel-title">
           <div className="wheel-panel">
