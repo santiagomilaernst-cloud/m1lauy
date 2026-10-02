@@ -44,6 +44,7 @@ function Index() {
     const onMessage = async (event: MessageEvent) => {
       if (event.origin !== window.location.origin || event.source !== shopFrame.current?.contentWindow) return;
       if (event.data?.type === "m1la-wheel-get-status") void status();
+      if (event.data?.type === "m1la-open-wheel") window.dispatchEvent(new CustomEvent("m1la-wheel-open"));
       if (event.data?.type !== "m1la-wheel-redeem") return;
       const orderId = event.data.orderId;
       if (typeof orderId !== "string" || !/^m1la-[a-f0-9-]{36}$/.test(orderId)) return;

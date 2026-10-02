@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type CSSProperties, type FormEvent } from "react";
-import { Gift, LogIn, LogOut, Sparkles, X } from "lucide-react";
+import { Gift, LogIn, LogOut, PartyPopper, Sparkles, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
