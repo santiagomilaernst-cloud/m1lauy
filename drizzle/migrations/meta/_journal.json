@@ -15,6 +15,13 @@
       "when": 1790827875000,
       "tag": "0001_single_use_wheel_checkout",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790918195751,
+      "tag": "0002_wheel_free_pair_odds",
+      "breakpoints": true
     }
   ]
 }
