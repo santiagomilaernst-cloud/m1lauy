@@ -135,7 +135,7 @@ export function DiscountWheel() {
     if (funSpinning || spinning) return;
     setFunSpinning(true);
     setFunResult(null);
-    const pick = segments[Math.floor(Math.random() * segments.length)];
+    const pick = segments[Math.floor(Math.random() * segments.length)] ?? "5%";
     const pickIndex = segments.indexOf(pick);
     const landingAngle = pickIndex >= 0 ? pickIndex * segmentStep + segmentStep / 2 : 0;
     setRotation((current) => current + 1800 + (360 - landingAngle));
