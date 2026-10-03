@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
+import { playFunEnd, playSpinTicks, playWin } from "@/lib/wheel-sounds";
 
 type WheelResult = {
   prize_code: string;
@@ -135,10 +136,13 @@ export function DiscountWheel() {
     const target = won.is_free_pair ? "PAR GRATIS" : `${won.discount_percent}%`;
     const targetIndex = segments.indexOf(target);
     const landingAngle = targetIndex >= 0 ? targetIndex * segmentStep + segmentStep / 2 : 0;
-    setRotation((current) => nextRotation(current, landingAngle));
+    const nextRot = nextRotation(rotation, landingAngle);
+    playSpinTicks(nextRot - rotation, 4200, segmentStep);
+    setRotation(nextRot);
     window.setTimeout(() => {
       setResult(won);
       setSpinning(false);
+      playWin(won.is_free_pair || (won.discount_percent ?? 0) >= 20);
     }, 4300);
   }
 
@@ -149,9 +153,12 @@ export function DiscountWheel() {
     const pick = segments[Math.floor(Math.random() * segments.length)] ?? "5%";
     const pickIndex = segments.indexOf(pick);
     const landingAngle = pickIndex >= 0 ? pickIndex * segmentStep + segmentStep / 2 : 0;
-    setRotation((current) => nextRotation(current, landingAngle));
+    const nextRot = nextRotation(rotation, landingAngle);
+    playSpinTicks(nextRot - rotation, 4200, segmentStep);
+    setRotation(nextRot);
     window.setTimeout(() => {
       setFunSpinning(false);
+      playFunEnd();
       setFunResult(
         pick === "PAR GRATIS"
           ? "¡Casi un par gratis!… pero esta tirada era solo por diversión."
