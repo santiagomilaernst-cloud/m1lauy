@@ -213,6 +213,16 @@
 .wheel-result-jackpot { border-color: var(--wheel-jackpot); animation: wheel-shimmer 1.4s ease-in-out infinite; }
 .wheel-message { margin: 0; color: var(--destructive); font-size: .75rem; text-align: center; }
 .wheel-odds { margin-top: .2rem; text-align: center; font-size: .65rem; }
+.wheel-fun-button { min-height: 42px; font-weight: 750; }
+.wheel-fun-result { margin: 0; text-align: center; font-size: .78rem; font-weight: 700; color: var(--wheel-a); }
+/* Ruleta más bonita */
+.wheel-panel { background: radial-gradient(circle at 30% 0%, color-mix(in oklch, var(--wheel-jackpot) 14%, var(--background)), var(--background) 60%); }
+.wheel-stage::before { content: ""; position: absolute; inset: -6px; border-radius: 50%; background: conic-gradient(var(--wheel-jackpot), var(--wheel-c), var(--wheel-d), var(--wheel-a), var(--wheel-jackpot)); filter: blur(18px); opacity: .55; animation: wheel-halo 6s linear infinite; }
+@keyframes wheel-halo { to { transform: rotate(360deg); } }
+.wheel-disc { border-color: var(--wheel-jackpot); background: radial-gradient(circle, transparent 38%, color-mix(in oklch, var(--foreground) 12%, transparent) 100%), repeating-conic-gradient(from 0deg, var(--wheel-a) 0deg 19.4deg, var(--background) 19.4deg 20deg, var(--wheel-b) 20deg 39.4deg, var(--background) 39.4deg 40deg, var(--wheel-c) 40deg 59.4deg, var(--background) 59.4deg 60deg, var(--wheel-d) 60deg 79.4deg, var(--background) 79.4deg 80deg); box-shadow: inset 0 0 0 4px var(--background), inset 0 0 30px color-mix(in oklch, var(--foreground) 25%, transparent), 0 0 0 4px var(--foreground), 0 16px 45px color-mix(in oklch, var(--foreground) 30%, transparent); }
+.wheel-hub { background: radial-gradient(circle at 35% 30%, var(--wheel-jackpot), var(--foreground) 75%); box-shadow: 0 4px 14px color-mix(in oklch, var(--foreground) 40%, transparent); }
+.wheel-pointer { border-top-color: var(--wheel-jackpot); filter: drop-shadow(0 0 6px var(--wheel-jackpot)); }
+@media (prefers-reduced-motion: reduce) { .wheel-stage::before { animation: none; } }
 
 @media (max-width: 700px) {
   .wheel-topbar { min-height: 36px; }

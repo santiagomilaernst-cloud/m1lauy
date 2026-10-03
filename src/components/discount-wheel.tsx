@@ -228,7 +228,11 @@ export function DiscountWheel() {
                   </>
                 )}
                 {message ? <p className="wheel-message" role="status">{message}</p> : null}
-                <p className="wheel-odds">Premios especiales: 20% (2%), 50% (0,5%) y par gratis (0,004%).</p>
+                <Button type="button" variant="outline" className="wheel-fun-button" onClick={handleFunSpin} disabled={funSpinning || spinning}>
+                  <PartyPopper /> {funSpinning ? "Girando…" : "Tiro gratis (sin premio)"}
+                </Button>
+                {funResult ? <p className="wheel-fun-result" role="status">{funResult}</p> : null}
+                <p className="wheel-odds">Los tiros gratis son solo por diversión y no afectan tu giro real. Premios especiales: 20% (2%), 50% (0,5%) y par gratis (0,000004%).</p>
               </div>
             </div>
           </div>
