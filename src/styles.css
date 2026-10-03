@@ -192,10 +192,10 @@
 .wheel-kicker { display: inline-flex; align-items: center; gap: .35rem; color: var(--primary); font-size: .68rem; font-weight: 800; }
 .wheel-kicker svg { width: 14px; height: 14px; }
 .wheel-layout { display: grid; grid-template-columns: minmax(280px, 1.05fr) minmax(260px, .95fr); align-items: center; gap: clamp(1rem, 4vw, 2.5rem); }
-.wheel-stage { position: relative; width: min(100%, 420px); aspect-ratio: 1; margin-inline: auto; padding: 10px; }
+.wheel-stage { --wheel-size: 340px; position: relative; width: var(--wheel-size); max-width: 100%; aspect-ratio: 1; margin-inline: auto; padding: 10px; }
 .wheel-pointer { position: absolute; z-index: 3; top: -2px; left: 50%; width: 0; height: 0; transform: translateX(-50%); border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 28px solid var(--foreground); filter: drop-shadow(0 3px 2px color-mix(in oklch, var(--foreground) 20%, transparent)); }
 .wheel-disc { position: relative; width: 100%; height: 100%; border: 8px solid var(--foreground); border-radius: 50%; background: repeating-conic-gradient(var(--wheel-a) 0deg 20deg, var(--wheel-b) 20deg 40deg, var(--wheel-c) 40deg 60deg, var(--wheel-d) 60deg 80deg); box-shadow: inset 0 0 0 4px var(--background), 0 10px 35px color-mix(in oklch, var(--foreground) 22%, transparent); transition: transform 4.2s cubic-bezier(.12,.72,.08,1); }
-.wheel-label { position: absolute; left: 50%; top: 50%; width: 54px; margin-left: -27px; transform: rotate(var(--wheel-angle)) translateY(calc(clamp(112px, 32vw, 160px) * -1)) rotate(calc(var(--wheel-angle) * -1)); text-align: center; color: var(--primary-foreground); font-size: clamp(.58rem, 1.8vw, .74rem); font-weight: 900; line-height: 1; text-shadow: 0 1px 2px var(--foreground); }
+.wheel-label { position: absolute; left: 50%; top: 50%; width: 54px; margin-left: -27px; transform: rotate(var(--wheel-angle)) translateY(calc(var(--wheel-size) * -0.37)) rotate(calc(var(--wheel-angle) * -1)); text-align: center; color: var(--primary-foreground); font-size: clamp(.58rem, 1.8vw, .74rem); font-weight: 900; line-height: 1; text-shadow: 0 1px 2px var(--foreground); }
 .wheel-jackpot { color: var(--wheel-jackpot); font-size: .46rem; line-height: .9; animation: wheel-shimmer 1.15s ease-in-out infinite; }
 .wheel-hub { position: absolute; inset: 39%; display: grid; place-items: center; border: 5px solid var(--background); border-radius: 50%; background: var(--foreground); color: var(--background); font-weight: 900; font-size: clamp(.75rem, 2vw, 1.1rem); }
 .wheel-actions { display: flex; flex-direction: column; gap: .7rem; }
@@ -227,7 +227,16 @@
 @media (max-width: 700px) {
   .wheel-topbar { min-height: 36px; }
   .wheel-layout { grid-template-columns: 1fr; }
-  .wheel-stage { width: min(78vw, 330px); }
+  .wheel-stage { --wheel-size: min(66vw, 252px); }
+  .wheel-label { width: 40px; margin-left: -20px; font-size: .6rem; }
+  .wheel-jackpot { font-size: .38rem; }
+  .wheel-disc { border-width: 5px; }
+  .wheel-overlay { padding: .5rem; }
+  .wheel-panel { max-height: calc(100dvh - 1rem); }
+  .wheel-layout { gap: .75rem; }
+  .wheel-copy h2 { font-size: 1.3rem; }
+  .wheel-readout { min-height: 30px; font-size: .85rem; }
+  .wheel-spin-button { min-height: 42px; }
   .wheel-panel { padding: 1rem; }
   .wheel-copy { margin-bottom: .4rem; }
   .wheel-copy p { display: none; }
@@ -237,3 +246,7 @@
   .wheel-topbar svg, .wheel-jackpot, .wheel-spin-button, .wheel-result-jackpot { animation: none; }
   .wheel-disc { transition-duration: .01ms; }
 }
+
+.wheel-readout { display: flex; align-items: center; justify-content: center; gap: .4rem; min-height: 34px; margin: 0 auto .35rem; padding: .2rem .9rem; width: fit-content; border: 1px solid var(--wheel-jackpot); border-radius: 999px; background: color-mix(in oklch, var(--wheel-jackpot) 16%, var(--background)); font-size: .95rem; font-weight: 900; box-shadow: 0 0 14px color-mix(in oklch, var(--wheel-jackpot) 45%, transparent); }
+.wheel-readout small { font-size: .65rem; font-weight: 700; color: var(--muted-foreground); text-transform: uppercase; }
+.wheel-readout-stage { display: flex; flex-direction: column; align-items: center; }

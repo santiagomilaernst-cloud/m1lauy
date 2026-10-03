@@ -20,6 +20,17 @@ const segments = [
   "4%", "8%", "12%", "20%", "1%", "50%", "6%", "3%", "PAR GRATIS",
 ];
 
+function nextRotation(current: number, landingAngle: number) {
+  const currentMod = ((current % 360) + 360) % 360;
+  const delta = (((360 - landingAngle - currentMod) % 360) + 360) % 360;
+  return current + 1800 + delta;
+}
+
+function labelAt(rotation: number) {
+  const angle = (((-rotation) % 360) + 360) % 360;
+  return segments[Math.floor(angle / (360 / segments.length)) % segments.length] ?? "";
+}
+
 function resultLabel(result: WheelResult) {
   return result.is_free_pair ? "¡Ganaste un par gratis!" : `¡Ganaste ${result.discount_percent}% de descuento!`;
 }
@@ -124,7 +135,7 @@ export function DiscountWheel() {
     const target = won.is_free_pair ? "PAR GRATIS" : `${won.discount_percent}%`;
     const targetIndex = segments.indexOf(target);
     const landingAngle = targetIndex >= 0 ? targetIndex * segmentStep + segmentStep / 2 : 0;
-    setRotation((current) => current + 1800 + (360 - landingAngle));
+    setRotation((current) => nextRotation(current, landingAngle));
     window.setTimeout(() => {
       setResult(won);
       setSpinning(false);
@@ -138,7 +149,7 @@ export function DiscountWheel() {
     const pick = segments[Math.floor(Math.random() * segments.length)] ?? "5%";
     const pickIndex = segments.indexOf(pick);
     const landingAngle = pickIndex >= 0 ? pickIndex * segmentStep + segmentStep / 2 : 0;
-    setRotation((current) => current + 1800 + (360 - landingAngle));
+    setRotation((current) => nextRotation(current, landingAngle));
     window.setTimeout(() => {
       setFunSpinning(false);
       setFunResult(
@@ -170,6 +181,11 @@ export function DiscountWheel() {
             </div>
 
             <div className="wheel-layout">
+              <div className="wheel-readout-stage">
+              <div className="wheel-readout" role="status" aria-live="polite">
+                <small>La flecha marca</small>
+                <span>{spinning || funSpinning ? "…" : labelAt(rotation)}</span>
+              </div>
               <div className="wheel-stage">
                 <div className="wheel-pointer" aria-hidden="true" />
                 <div
@@ -188,6 +204,7 @@ export function DiscountWheel() {
                   ))}
                   <div className="wheel-hub">m1la</div>
                 </div>
+              </div>
               </div>
 
               <div className="wheel-actions">
@@ -232,7 +249,6 @@ export function DiscountWheel() {
                   <PartyPopper /> {funSpinning ? "Girando…" : "Tiro gratis (sin premio)"}
                 </Button>
                 {funResult ? <p className="wheel-fun-result" role="status">{funResult}</p> : null}
-                <p className="wheel-odds">Los tiros gratis son solo por diversión y no afectan tu giro real. Premios especiales: 20% (2%), 50% (0,5%) y par gratis (0,000004%).</p>
               </div>
             </div>
           </div>
