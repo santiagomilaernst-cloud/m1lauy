@@ -252,10 +252,6 @@ export function DiscountWheel() {
                   </>
                 )}
                 {message ? <p className="wheel-message" role="status">{message}</p> : null}
-                <Button type="button" variant="outline" className="wheel-fun-button" onClick={handleFunSpin} disabled={funSpinning || spinning}>
-                  <PartyPopper /> {funSpinning ? "Girando…" : "Tiro gratis (sin premio)"}
-                </Button>
-                {funResult ? <p className="wheel-fun-result" role="status">{funResult}</p> : null}
               </div>
             </div>
           </div>
