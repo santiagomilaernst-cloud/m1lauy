@@ -19,8 +19,10 @@ export type Database = {
           discount_percent: number | null
           is_free_pair: boolean
           prize_code: string
+          prize_label: string | null
           redeemed_at: string | null
           redeemed_order_id: string | null
+          user_email: string | null
           user_id: string
           won_at: string
         }
@@ -28,8 +30,10 @@ export type Database = {
           discount_percent?: number | null
           is_free_pair?: boolean
           prize_code: string
+          prize_label?: string | null
           redeemed_at?: string | null
           redeemed_order_id?: string | null
+          user_email?: string | null
           user_id: string
           won_at?: string
         }
@@ -37,8 +41,10 @@ export type Database = {
           discount_percent?: number | null
           is_free_pair?: boolean
           prize_code?: string
+          prize_label?: string | null
           redeemed_at?: string | null
           redeemed_order_id?: string | null
+          user_email?: string | null
           user_id?: string
           won_at?: string
         }
