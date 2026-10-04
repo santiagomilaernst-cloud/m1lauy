@@ -211,6 +211,8 @@
 .wheel-result strong { font-size: 1.1rem; }
 .wheel-result span { color: var(--muted-foreground); font-size: .75rem; }
 .wheel-result-jackpot { border-color: var(--wheel-jackpot); animation: wheel-shimmer 1.4s ease-in-out infinite; }
+.wheel-browse-button { margin-top: .35rem; width: 100%; gap: .5rem; }
+.wheel-browse-button svg { width: 16px; height: 16px; }
 .wheel-message { margin: 0; color: var(--destructive); font-size: .75rem; text-align: center; }
 .wheel-odds { margin-top: .2rem; text-align: center; font-size: .65rem; }
 .wheel-fun-button { min-height: 42px; font-weight: 750; }

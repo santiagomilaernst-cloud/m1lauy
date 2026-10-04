@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type CSSProperties, type FormEvent } from "react";
-import { Gift, LogIn, LogOut, PartyPopper, Sparkles, X } from "lucide-react";
+import { ArrowRight, Gift, LogIn, LogOut, Sparkles, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -173,6 +173,14 @@ export function DiscountWheel() {
     setResult(null);
   }
 
+  function handleBrowsePairs() {
+    setOpen(false);
+    window.setTimeout(() => {
+      document.querySelector<HTMLIFrameElement>('iframe[title="Tienda online m1la"]')
+        ?.contentDocument?.getElementById("catalogo")?.scrollIntoView({ behavior: "smooth" });
+    }, 50);
+  }
+
   return (
     <>
       {open ? (
@@ -243,6 +251,9 @@ export function DiscountWheel() {
                         <Sparkles />
                         <strong>{resultLabel(result)}</strong>
                         <span>{result.redeemed_at ? "Este premio ya se usó en una compra." : "Disponible para usar una sola vez en el carrito."}</span>
+                        <Button type="button" className="wheel-browse-button" onClick={handleBrowsePairs}>
+                          Elegir pares <ArrowRight aria-hidden="true" />
+                        </Button>
                       </div>
                     ) : (
                       <Button className="wheel-spin-button" onClick={handleSpin} disabled={spinning}>
