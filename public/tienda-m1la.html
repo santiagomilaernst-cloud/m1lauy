@@ -39,6 +39,31 @@
 .m1la-whatsapp-tip{position:absolute;right:calc(100% + 12px);top:50%;display:flex;align-items:center;gap:6px;white-space:nowrap;background:#fff;color:#0a0a0a;font:700 12px/1 system-ui,sans-serif;padding:9px 13px;border-radius:14px 14px 14px 4px;box-shadow:0 4px 16px rgba(0,0,0,.2);opacity:0;transform:translate(10px,-50%) scale(.6);transform-origin:100% 50%;pointer-events:none;animation:m1laWaTip 11s cubic-bezier(.2,.9,.3,1.2) 2.5s infinite}.m1la-whatsapp-tip::before{content:"";width:8px;height:8px;border-radius:50%;background:#25d366;flex:none}
 @keyframes m1laWaTip{0%,4%{opacity:0;transform:translate(10px,-50%) scale(.6)}9%,38%{opacity:1;transform:translate(0,-50%) scale(1)}44%,100%{opacity:0;transform:translate(10px,-50%) scale(.6)}}
 @media(prefers-reduced-motion:reduce){.m1la-whatsapp-float::before,.m1la-whatsapp-tip{animation:none}}
+.m1la-request-wrap{display:flex;justify-content:center;margin:.25rem 0 2.25rem;grid-column:1/-1;width:100%}
+.m1la-request-btn{display:inline-flex;align-items:center;gap:.5em;padding:.65em 1.4em;border-radius:999px;cursor:pointer;border:1.5px solid rgba(10,10,10,.25);background:transparent;color:#0A0A0A;font-weight:800;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;transition:all .2s ease}
+.m1la-request-btn:hover{background:#0A0A0A;color:#FAFAFA;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.m1la-request-btn svg{width:14px;height:14px;fill:currentColor}
+.dark .m1la-request-btn{border-color:rgba(245,245,247,.3);color:#F5F5F7}
+.dark .m1la-request-btn:hover{background:#FAFAFA;color:#0A0A0A}
+.m1la-request-modal{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:1rem;background:rgba(0,0,0,.55);backdrop-filter:blur(6px)}
+.m1la-request-modal.m1la-open{display:flex}
+.m1la-request-card{width:100%;max-width:380px;border-radius:20px;padding:1.6rem 1.4rem;background:#FFFFFF;color:#0A0A0A;box-shadow:0 20px 60px rgba(0,0,0,.35);font-family:system-ui,sans-serif;animation:m1laReqIn .25s ease}
+.dark .m1la-request-card{background:#141419;color:#F5F5F7;border:1px solid rgba(255,255,255,.08)}
+@keyframes m1laReqIn{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.m1la-request-card h3{margin:0 0 .3rem;font-size:1rem;font-weight:900;text-transform:uppercase;letter-spacing:.02em}
+.m1la-request-card p{margin:0 0 1.1rem;font-size:.78rem;line-height:1.45;opacity:.7}
+.m1la-request-card label{display:block;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;opacity:.65;margin:.8rem 0 .3rem}
+.m1la-request-card input{width:100%;box-sizing:border-box;padding:.7em .9em;border-radius:12px;border:1.5px solid rgba(0,0,0,.18);background:transparent;color:inherit;font-size:.9rem;outline:none;transition:border-color .15s}
+.m1la-request-card input:focus{border-color:#25d366}
+.dark .m1la-request-card input{border-color:rgba(255,255,255,.2)}
+.m1la-request-err{display:none;margin-top:.7rem;font-size:.72rem;font-weight:700;color:#e5484d}
+.m1la-request-err.m1la-show{display:block}
+.m1la-request-send{margin-top:1.1rem;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:.5em;padding:.85em 1em;border-radius:999px;border:none;cursor:pointer;background:linear-gradient(145deg,#2fe27a,#1ebe5a);color:#fff;font-weight:900;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 6px 18px rgba(37,211,102,.35);transition:transform .15s ease}
+.m1la-request-send:hover{transform:scale(1.02)}
+.m1la-request-send svg{width:17px;height:17px;fill:currentColor}
+.m1la-request-close{position:absolute;top:.7rem;right:.9rem;background:none;border:none;cursor:pointer;font-size:1.2rem;line-height:1;color:inherit;opacity:.55;padding:.3rem}
+.m1la-request-close:hover{opacity:1}
+.m1la-request-card{position:relative}
 </style>
 </head>
   <body class="bg-[#F4F4F4] text-[#0A0A0A] antialiased selection:bg-[#0A0A0A] selection:text-[#F4F4F4]">
@@ -108,6 +133,60 @@ También podés retirar sin costo en nuestro punto de entrega.`},{keywords:[`pag
 
 </script>
 <a class="m1la-whatsapp-float" href="https://wa.me/59896956974?text=%C2%A1Hola%20m1la!%20Quiero%20consultar%20por%20un%20par." target="_blank" rel="noopener noreferrer" aria-label="Hablar con m1la por WhatsApp" title="Hablar por WhatsApp"><span class="m1la-whatsapp-tip">Contactanos por wspp</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg></a>
+<div class="m1la-request-modal" id="m1la-request-modal" role="dialog" aria-modal="true" aria-labelledby="m1la-request-title">
+  <div class="m1la-request-card">
+    <button type="button" class="m1la-request-close" id="m1la-request-close" aria-label="Cerrar">&times;</button>
+    <h3 id="m1la-request-title">No encontraste tus zapas</h3>
+    <p>Decinos qué modelo buscás y lo conseguimos para vos.</p>
+    <label for="m1la-request-modelo">Nombre del modelo</label>
+    <input id="m1la-request-modelo" type="text" maxlength="60" placeholder="Ej: Nike Air Max 90" autocomplete="off">
+    <label for="m1la-request-talle">Talle</label>
+    <input id="m1la-request-talle" type="text" maxlength="6" placeholder="Ej: 40" autocomplete="off">
+    <div class="m1la-request-err" id="m1la-request-err">Completá el modelo y el talle para enviarnos la consulta.</div>
+    <button type="button" class="m1la-request-send" id="m1la-request-send">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
+      Consultar por WhatsApp
+    </button>
+  </div>
+</div>
+<script>
+(function(){
+  var MODAL=document.getElementById('m1la-request-modal');
+  var BTN_HTML='<button type="button" class="m1la-request-btn" id="m1la-request-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>No encontraste tus zapas</button>';
+  function insertBtn(){
+    var grid=document.getElementById('product-grid');
+    if(!grid||document.getElementById('m1la-request-btn'))return;
+    var wrap=document.createElement('div');
+    wrap.className='m1la-request-wrap';
+    wrap.innerHTML=BTN_HTML;
+    grid.parentNode.insertBefore(wrap,grid);
+    wrap.querySelector('#m1la-request-btn').addEventListener('click',openModal);
+  }
+  function openModal(){
+    MODAL.classList.add('m1la-open');
+    document.getElementById('m1la-request-err').classList.remove('m1la-show');
+    setTimeout(function(){document.getElementById('m1la-request-modelo').focus();},60);
+  }
+  function closeModal(){MODAL.classList.remove('m1la-open');}
+  MODAL.addEventListener('click',function(e){if(e.target===MODAL)closeModal();});
+  document.getElementById('m1la-request-close').addEventListener('click',closeModal);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+  document.getElementById('m1la-request-send').addEventListener('click',function(){
+    var modelo=document.getElementById('m1la-request-modelo').value.trim().slice(0,60);
+    var talle=document.getElementById('m1la-request-talle').value.trim().slice(0,6);
+    var err=document.getElementById('m1la-request-err');
+    if(!modelo||!talle){err.classList.add('m1la-show');return;}
+    err.classList.remove('m1la-show');
+    var msg='Hola m1la! No encontre mis zapas en la tienda.\nModelo: '+modelo+'\nTalle: '+talle+'\nLa pueden conseguir?';
+    window.open('https://wa.me/59896956974?text='+encodeURIComponent(msg),'_blank','noopener');
+    closeModal();
+  });
+  var root=document.getElementById('root');
+  if(root){new MutationObserver(insertBtn).observe(root,{childList:true,subtree:true});}
+  insertBtn();
+})();
+</script>
+
 </body>
 </html>
 
