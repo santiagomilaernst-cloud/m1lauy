@@ -69,6 +69,7 @@
 .m1la-copy-toast.m1la-show{opacity:1;transform:translate(-50%,0)}
 .m1la-copy-toast svg{width:14px;height:14px;fill:currentColor;flex:0 0 14px}
 .m1la-wheel-cta.m1la-copied{background:rgba(57,255,137,.24);color:#EAFFF2}
+@media(max-width:640px){.m1la-copy-toast{display:none}}
 @media(prefers-reduced-motion:reduce){.m1la-copy-toast{transition:none}}
 </style>
 </head>
@@ -178,7 +179,7 @@ También podés retirar sin costo en nuestro punto de entrega.`},{keywords:[`pag
     toast.className='m1la-copy-toast';
     toast.setAttribute('role','status');
     toast.setAttribute('aria-live','polite');
-    toast.innerHTML='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.65.65 0 1 1 .966-.98l1.94 1.914 3.74-4.348Z"/><path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16Zm.002-1.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13Z"/></svg><span>Cupon copiado</span>';
+    toast.innerHTML='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.65.65 0 1 1 .966-.98l1.94 1.914 3.74-4.348Z"/><path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16Zm.002-1.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13Z"/></svg><span>Cupón copiado</span>';
     document.body.appendChild(toast);
     return toast;
   }
@@ -200,7 +201,7 @@ También podés retirar sin costo en nuestro punto de entrega.`},{keywords:[`pag
   function flash(el){
     if(current&&current!==el)clearTimeout(restoreTimer);
     var orig=el.textContent;
-    setLabel(el,'Cupon copiado');
+    setLabel(el,'Cupón copiado');
     el.classList.add('m1la-copied');
     current=el;
     clearTimeout(restoreTimer);
@@ -224,8 +225,8 @@ También podés retirar sin costo en nuestro punto de entrega.`},{keywords:[`pag
     });
   }
   function handle(el){
-    copy(COUPON).then(function(){showToast('Cupon copiado');flash(el);})
-      .catch(function(){showToast('Cupon: M1LA1990');});
+    copy(COUPON).then(function(){showToast('Cupón copiado');flash(el);})
+      .catch(function(){showToast('Cupón: M1LA1990');});
   }
   function pick(e){
     var t=e.target;
@@ -243,7 +244,7 @@ También podés retirar sin costo en nuestro punto de entrega.`},{keywords:[`pag
       if(els[i].getAttribute('role')!=='button'){
         els[i].setAttribute('role','button');
         els[i].setAttribute('tabindex','0');
-        els[i].setAttribute('aria-label','Copiar cupon '+COUPON);
+        els[i].setAttribute('aria-label','Copiar cupón '+COUPON);
       }
     }
   }
